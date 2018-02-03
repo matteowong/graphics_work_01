@@ -15,6 +15,7 @@ int main() {
   
 
   int y=1;
+  int z=1;
   write(fd,"P3\n500 500\n255\n", strlen("P3\n500 500\n255\n"));
   i=0;
   for (;i<500;i++) {
@@ -29,10 +30,17 @@ int main() {
     else g--;
 
     for (;j<500;j++) {
+      if (r==0) {
+	z=0;
+	r++;
+      }
+      else if (z) r--;    
+      else r++;
       sprintf(buff,"%d %d %d\n",r,g,b);
       write(fd,buff,strlen(buff));
     }
-    
+    r=255;
+    z=1;
   }
 
   
